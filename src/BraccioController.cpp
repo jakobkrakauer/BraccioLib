@@ -14,6 +14,14 @@ bool BraccioController::lin(const double x, const double y, const double z, cons
 
     //Schritt 2 – lineare Interpolation: von _joints hin zu den Zielgelenkwinkeln
 
+    // double t = 0.0;
+    // while (t < 1.0) {
+    //     t += _trajectory.computeStepSize(vel, DELTA_T_MS); // t erhöhen
+    //     _trajectory.linearInterpolate(_joints, qTarget, t, qOut); // Zwischenwinkel
+    //     // qOut an Servos schicken
+    //     delay(DELTA_T_MS); // 50ms warten
+    // }
+
     //Schritt 3 – bewegung an die Servos schicken
 
     //Schritt 4 – _joints und _tcp aktualisieren
