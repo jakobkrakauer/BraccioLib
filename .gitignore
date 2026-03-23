@@ -1,7 +1,20 @@
-*.exe
+# Build files
 *.o
-*.log
 *.elf
 *.bin
-.vscode/
 build/
+
+# Logs
+*.log
+
+# Arduino generated
+*.ino.cpp
+*.hex
+*.eep
+
+# Editor
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
