@@ -4,35 +4,35 @@ BraccioController::BraccioController() {
     for (int i = 0; i < 5; i++) {
         _joints[i] = 90.0;
     }
-    _joints[5] = 73.0;
 
-    //VK via _kinematics
+    // initialize _tcp via _kinematics.forwardKinematics(...);
+
 }
 
 bool BraccioController::lin(const double x, const double y, const double z, const double vel) {
-    //Schritt 1 – IK via _kinematics
+    // Step 1 – calcualte Target angle via _kinematics.inverseKinematics(...);
 
-    //Schritt 2 – lineare Interpolation: von _joints hin zu den Zielgelenkwinkeln
+    // Step 2: calculate stepSize 
+        // double stepSize = _trajectory.computeStepSize(...);
 
-    // double t = 0.0;
-    // while (t < 1.0) {
-    //     t += _trajectory.computeStepSize(vel, DELTA_T_MS); // t erhöhen
-    //     _trajectory.linearInterpolate(_joints, qTarget, t, qOut); // Zwischenwinkel
-    //     // qOut an Servos schicken
-    //     delay(DELTA_T_MS); // 50ms warten
-    // }
+    //  Step 3 – loop: 
+        // 1. calculate next interpolation step via _trajectory.linearInterpolate(...);
+        // 2. send movement to the servos
+        // 3. update _joints and _tcp (calculate _tcp via forwardKinematics)
+        // 4. send _joints and _tcp to terminal 
 
-    //Schritt 3 – bewegung an die Servos schicken
-
-    //Schritt 4 – _joints und _tcp aktualisieren
-
-
-    return false;
 }
 
-bool BraccioController::ptp(const double q1, const double q2, const double q3, const double q4, const double q5, const double q6) {
-    //...
-    return false;
+bool BraccioController::ptp(const double q1, const double q2, const double q3, const double q4, const double q5, const double vel) {
+    // Step 1: calculate stepSize 
+        // double stepSize = _trajectory.computeStepSize(...);
+    
+    //  Step 2 – loop: 
+        // 1. calculate next interpolation step via _trajectory.linearInterpolate(...);
+        // 2. send movement to the servos
+        // 3. update _joints and _tcp (calculate _tcp via forwardKinematics)
+        // 4. send _joints and _tcp to terminal 
+    
 }
 
 void BraccioController::getCurrentPosition(double &x, double &y, double &z) {
@@ -41,8 +41,8 @@ void BraccioController::getCurrentPosition(double &x, double &y, double &z) {
     z = _tcp[2];
 }
 
-void BraccioController::getCurrentJoints(double q[6]) {
-    for (int i = 0; i < 6; i++) {
+void BraccioController::getCurrentJoints(double q[5]) {
+    for (int i = 0; i < 5; i++) {
         q[i] = _joints[i];
     }
 }

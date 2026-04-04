@@ -1,32 +1,43 @@
 #include "Kinematics.h"
 
-Kinematics::Kinematics() {
+//#include Eigen-Bib
 
-    // _a[0] = ...;  // Denavit-Hartenberg Parameter initialisieren (Aus Datenblatt auslesen/einmalig berechnen) -> außer _joints
+Kinematics::Kinematics() {
+    // Initialize Denavit-Hartenberg parameters (fixed, from datasheet)
+    // theta = _joints[i] (variable, not set here)
+
+    // Link lengths (mm)
+    // _a[0] = ...;
+    // _a[1] = ...;
+    // ...
+
+    // Z-offset (mm)
     // _d[0] = ...;
+    // _d[1] = ...;
+    // ...
+
+    // Twist angles (deg)
+    // _alpha[0] = ...;
+    // _alpha[1] = ...;
     // ...
 
 }
 
-bool Kinematics::forwardKinematics(const double q[6], double &x, double &y, double &z) {
-    // DH Parameter für Zielkoordinaten berechen (für jedes Gelenk eine 4x4 Transformationsmatrix aufstellen (mithilfe von Eigen))
+bool Kinematics::forwardKinematics(const double q[5], double &x, double &y, double &z) {
+    // Calculate transformation matrix T03 using the DH parameters
 
-    // Platzhalter
-    x = 0.0;
-    y = 0.0;
-    z = 0.0;
-    
-    return false;   
+    // Read the position from T03
+
+    // Later: Include T34 and T45
+
 }
 
-bool Kinematics::inverseKinematics(const double x, const double y, const double z, double q[6]) {
-    // Prüfen ob Position im Arbeitsraum liegt
-    // Gelenkwinkel mittels analytischer/numerischer/geometrischer Ansatz nach Weber über IK berechnen
+bool Kinematics::inverseKinematics(const double x, const double y, const double z, double q[5]) {
+    // Check whether the position lies within the workspace
 
-    // Platzhalter
-    for (int i = 0; i < 6; i++) {
-        q[i] = 0.0;
-    }
-
-    return false; 
+    // IK for position → calculate q1, q2, q3 (analytical/numerical/geometric approach according to Weber)
+    // -> q4, q5 remain unchanged
+    
+    // for later: IK for orientation → calculate q4, q5
+    
 }
