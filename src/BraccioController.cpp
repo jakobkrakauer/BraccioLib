@@ -17,8 +17,8 @@ bool BraccioController::lin(const double x, const double y, const double z, cons
 
     //  Step 3 – loop: 
         // 1. calculate next interpolation step via _trajectory.linearInterpolate(...);
-        // 2. send movement to the servos
-        // 3. update _joints and _tcp (calculate _tcp via forwardKinematics)
+        // 2. update _joints and _tcp (calculate _tcp via forwardKinematics) 
+        // 3. send current _joints values to the servos
         // 4. send _joints and _tcp to terminal 
 
 }

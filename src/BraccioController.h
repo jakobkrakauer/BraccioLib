@@ -3,7 +3,7 @@
 
 #include "Kinematics.h"
 #include "Trajectory.h"
-
+ 
 class BraccioController {
 public:
     BraccioController();                                    

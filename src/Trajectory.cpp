@@ -4,7 +4,7 @@
 //#include Eigen-Bib
 
 void Trajectory::linearInterpolate(const double qStart[5], const double qEnd[5], const double t, double qOut[5]) {
-    // t [0.0, 1.0]
+    // t: interpolation parameter (0.0 = start, 1.0 = target)
     
     // for joints 1–3: qOut[i] = qStart[i] + t * (qEnd[i] - qStart[i]);
 
@@ -15,9 +15,9 @@ void Trajectory::linearInterpolate(const double qStart[5], const double qEnd[5],
 }
     
 double Trajectory::computeStepSize(const double qStart[5], const double qEnd[5], const double vel) { 
-    // vel [0.0, 1.0]
+    // vel [0.0, 1.0]: scaling factor for max_speed
 
-    // Calculate maxAngleDiff  using the initial and final angles
+    // calculate maxAngleDiff using the initial and final angles
 
     // calculate stepsize = (vel * MAX_SPEED * deltaT_ms) / (1000.0 * maxAngleDiff);
     //      - max_speed: maximum joint speed [deg/s]
