@@ -18,12 +18,19 @@ public:
     // Temporary function for testing IK without trajectory planning.
     bool moveToPosition(const double x, const double y, const double z, const double phi = 90.0);
 
+    void setGripper(const int angle);
+    void gripperOpen();
+    void gripperClose(); 
+
+
 private:
     double _joints[5];
     double _tcp[3];
 
     Kinematics _kinematics;
     Trajectory _trajectory; 
+
+    int _gripperAngle = 0;
 };
 
 #endif

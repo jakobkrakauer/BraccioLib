@@ -70,7 +70,7 @@ bool BraccioController::moveToPosition(const double x, const double y, const dou
         (int)qTarget[2],  // elbow
         (int)qTarget[3],  // wrist_ver
         90,               // wrist_rot fix
-        73                // gripper fix
+        _gripperAngle     // gripper fix
     );
 
     // Step 3: update _joints
@@ -80,3 +80,13 @@ bool BraccioController::moveToPosition(const double x, const double y, const dou
 
     return true;
 }
+
+void BraccioController::setGripper(const int angle) {
+    _gripperAngle = angle;
+    Braccio.ServoMovement(20,
+        (int)_joints[0], (int)_joints[1], (int)_joints[2],
+        (int)_joints[3], 90, _gripperAngle);
+}
+
+void BraccioController::gripperOpen()  { setGripper(0); }
+void BraccioController::gripperClose() { setGripper(73);  }
