@@ -1,5 +1,7 @@
 #include "BraccioController.h"
 
+#include <Arduino.h>
+
 BraccioController::BraccioController() {
     for (int i = 0; i < 5; i++) {
         _joints[i] = 90.0;
@@ -45,4 +47,36 @@ void BraccioController::getCurrentJoints(double q[5]) {
     for (int i = 0; i < 5; i++) {
         q[i] = _joints[i];
     }
+}
+
+bool BraccioController::moveToPosition(const double x, const double y, const double z, const double phi) {
+    // Step 1: calculate target joint angles via _kinematics.inverseKinematics()
+    double qTarget[5];
+    if(_kinematics.inverseKinematics(x, y, z, phi, qTarget)) {
+        Serial.print(F("Angles: "));
+        Serial.print(qTarget[0]); Serial.print(F(", "));
+        Serial.print(qTarget[1]); Serial.print(F(", "));
+        Serial.print(qTarget[2]); Serial.print(F(", "));
+        Serial.println(qTarget[3]);
+    } else {
+        Serial.println("Position not reachable!");
+        return false;
+    }
+
+    // Step 2: send joint angles to servos
+    Braccio.ServoMovement(20,
+        (int)qTarget[0],  // base
+        (int)qTarget[1],  // shoulder
+        (int)qTarget[2],  // elbow
+        (int)qTarget[3],  // wrist_ver
+        90,               // wrist_rot fix
+        73                // gripper fix
+    );
+
+    // Step 3: update _joints
+    for(int i = 0; i < 5; i++) {
+        _joints[i] = qTarget[i];
+    }
+
+    return true;
 }
