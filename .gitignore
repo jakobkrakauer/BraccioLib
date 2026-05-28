@@ -18,3 +18,6 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Junction - not tracked in git
+examples/BraccioLib_Example/src

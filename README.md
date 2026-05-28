@@ -3,10 +3,19 @@
 Real-time motion control library for the Arduino TinkerKit Braccio robot.
 
 ## Features
-- motion control using target coordinates and interpolation (lin, circ, SPL)
-- Reading current coordinates of the TCP
 - Gripper open/close control
+- ...
 
 ## Example
 
 See `examples/SerialControl`
+
+## Dependencies
+- Braccio Library for Arduino
+- CGx-InverseK by cgxeiji (https://github.com/cgxeiji/CGx-InverseK)
+
+## Installation
+1. Install dependencies via Arduino Library Manager
+2. Download BraccioLib.zip
+3. Arduino IDE → Sketch → Include Library → Add .ZIP
+
